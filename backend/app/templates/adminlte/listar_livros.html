@@ -1,0 +1,95 @@
+{% extends 'adminlte/base.html' %}
+{% block title %}Biblioteca Digital - Livros{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row mb-4">
+        <div class="col">
+            <h1 class="h3">Livros Cadastrados</h1>
+        </div>
+        <div class="col text-end">
+            <a href="{{ url_for('main.novo_livro') }}" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Novo Livro
+            </a>
+        </div>
+    </div>
+
+
+    <form method="get" class="row g-2 mb-3">
+        <div class="col-md-4">
+            <input type="text" name="busca" value="{{ busca }}" class="form-control" placeholder="Buscar por título">
+        </div>
+        <div class="col-md-4">
+            <select name="categoria" class="form-select">
+                <option value="">Todas as categorias</option>
+                {% for cat in categorias %}
+                <option value="{{ cat[0] }}" {% if categoria == cat[0] %}selected{% endif %}>{{ cat[0] }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="col-md-4">
+            <button type="submit" class="btn btn-primary"><i class="bi bi-search"></i> Filtrar</button>
+        </div>
+    </form>
+    
+
+    <div class="card">
+
+        
+        <div class="card-body p-0">
+
+            
+            <table class="table table-striped m-0">
+                <thead class="table-light">
+                    <tr>
+                        <th>ID</th>
+                        <th>Título</th>
+                        <th>Categoria</th>
+                        <th>Capa</th>
+                        <th>PDF</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for livro in livros %}
+                    <tr>
+                        <td>{{ livro.id }}</td>
+                        <td>{{ livro.titulo }}</td>
+                        <td>{{ livro.categoria }}</td>
+                        <td>
+                            {% if livro.imagem %}
+                            <img src="{{ url_for('static', filename='uploads/' ~ livro.imagem) }}" alt="Capa" width="50">
+                            {% else %}
+                            <span class="text-muted">--</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            {% if livro.pdf %}
+                            <a href="{{ url_for('static', filename='uploads/' ~ livro.pdf) }}" target="_blank" class="btn btn-sm btn-outline-secondary">
+                                Ver PDF
+                            </a>
+                            {% else %}
+                            <span class="text-muted">--</span>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <a href="{{ url_for('main.ver_livro', id=livro.id) }}" class="btn btn-sm btn-info">Detalhes</a>
+                            <a href="{{ url_for('main.editar_livro', id=livro.id) }}" class="btn btn-sm btn-warning">Editar</a>
+
+                            <form action="{{ url_for('main.excluir_livro', id=livro.id) }}" method="POST" style="display:inline;" onsubmit="return confirm('Deseja excluir este livro?')">
+                                <button type="submit" class="btn btn-sm btn-danger">Excluir</button>
+                            </form>
+
+                        </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="6" class="text-center text-muted">Nenhum livro cadastrado ainda.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

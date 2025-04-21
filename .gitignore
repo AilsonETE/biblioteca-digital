@@ -1,0 +1,78 @@
+# =====================
+# GERAL
+# =====================
+*.log
+*.pyc
+*.pyo
+*.pyd
+*.swp
+*.swo
+*.bak
+*.tmp
+*.DS_Store
+*.env
+.env
+
+# IDEs e ferramentas
+.vscode/
+.idea/
+*.code-workspace
+
+# =====================
+# FLUTTER (app-flutter)
+# =====================
+app-flutter/.dart_tool/
+app-flutter/.flutter-plugins
+app-flutter/.flutter-plugins-dependencies
+app-flutter/.packages
+app-flutter/build/
+app-flutter/.ios/
+app-flutter/.android/
+app-flutter/.gradle/
+app-flutter/pubspec.lock
+app-flutter/android/.gradle/
+app-flutter/android/app/debug
+app-flutter/android/app/profile
+app-flutter/android/app/release
+app-flutter/ios/Flutter/Flutter.framework
+app-flutter/ios/Flutter/Flutter.podspec
+app-flutter/ios/Flutter/App.framework
+app-flutter/ios/Flutter/Generated.xcconfig
+app-flutter/.idea/
+
+# macOS
+app-flutter/macos/Flutter/ephemeral/
+app-flutter/macos/Flutter/GeneratedPluginRegistrant.swift
+
+# Web
+app-flutter/web/.dart_tool/
+
+# =====================
+# FLASK (backend)
+# =====================
+backend/__pycache__/
+backend/instance/
+backend/*.pyc
+backend/*.pyo
+backend/*.pyd
+backend/.pytest_cache/
+backend/.mypy_cache/
+backend/.env
+backend/env/
+backend/venv/
+backend/.venv/
+backend/db.sqlite3
+backend/migrations/
+backend/.coverage
+backend/htmlcov/
+backend/coverage.xml
+
+# Arquivos temporários
+backend/*.log
+backend/.vscode/
+
+# =====================
+# NODE/WEB (caso use em frontend)
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.env
